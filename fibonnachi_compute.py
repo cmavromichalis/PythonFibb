@@ -12,7 +12,6 @@ def fibonacci_generator(number):
 
     # If we have already calculated this, return it
     if len(FIBONACCI_NUMBERS) > number:
-        print("Length:", len(FIBONACCI_NUMBERS))
         return FIBONACCI_NUMBERS[number]
 
     # Else calculate it where we left off
