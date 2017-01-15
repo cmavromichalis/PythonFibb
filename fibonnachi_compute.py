@@ -11,14 +11,15 @@ def fibonacci_generator(number):
         return 'Please enter a number greater than 0'
 
     # If we have already calculated this, return it
-    if len(FIBONACCI_NUMBERS) >= number:
-        return FIBONACCI_NUMBERS[number-1]
+    if len(FIBONACCI_NUMBERS) > number:
+        print("Length:", len(FIBONACCI_NUMBERS))
+        return FIBONACCI_NUMBERS[number]
 
     # Else calculate it where we left off
     number_computed = len(FIBONACCI_NUMBERS)
     a = FIBONACCI_NUMBERS[number_computed - 2]
     b = FIBONACCI_NUMBERS[number_computed - 1]
-    counter = number_computed
+    counter = number_computed - 1
 
     # Calculation loop
     start_time = time.time()
@@ -35,11 +36,11 @@ def fibonacci_generator(number):
     return b
 
 
-# print("0'th num should be. ", fibonacci_generator(0))  # Error
-# print("1st num should be. ", fibonacci_generator(1))  # 0
-# print("1st num should be. ", fibonacci_generator(1))  # 0
-# print("10 num should be. ", fibonacci_generator(10))  # 0
-# print("20 num should be. ", fibonacci_generator(20))  # 0
-# print("10 num should be. ", fibonacci_generator(10))  # 0
+print("Precalculating 10000", fibonacci_generator(10000))  # Error
+#print("Precalculating 10000", fibonacci_generator(11))  # Error
+#print("1st num should be. ", fibonacci_generator(10))  # 0
+#print("10 num should be. ", fibonacci_generator(10))  # 0
+#print("20 num should be. ", fibonacci_generator(20))  # 0
+#print("10 num should be. ", fibonacci_generator(10))  # 0
 # print("42 num should be. ", fibonacci_generator(ct.value))  # 0
 #print("500000 num should be.", fibonacci_generator(1000001))
