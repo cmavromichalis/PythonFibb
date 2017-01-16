@@ -1,7 +1,8 @@
-import socket
-import asyncore
-import time
 import argparse
+import asyncore
+import socket
+import time
+
 
 class Client(asyncore.dispatcher_with_send):
 
@@ -38,8 +39,8 @@ class Client(asyncore.dispatcher_with_send):
 
 parser = argparse.ArgumentParser(description='Passes n to a server to computer the nth Fibonacci number.')
 parser.add_argument('integer', nargs=1, type=int, help='The nth Fibonacci number to compute')
-arguements = parser.parse_args()
-command_line_number = (arguements.integer[0])
+arguments = parser.parse_args()
+command_line_number = (arguments.integer[0])
 
 
 client = Client('localhost', 8080, command_line_number)

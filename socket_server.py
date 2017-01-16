@@ -1,16 +1,15 @@
+from fibonnachi_compute import fibonacci_generator
 import socket
 import threading
-from optparse import OptionParser
-from fibonnachi_compute import Fibonacci
 
 
 class FibonnachiServer(threading.Thread):
 
-    def __init__(self, host, port, socket):
+    def __init__(self, this_host, this_port, this_socket):
         threading.Thread.__init__(self)
-        self.host = host
-        self.port = port
-        self.socket = socket
+        self.host = this_host
+        self.port = this_port
+        self.socket = this_socket
         print("New thread started for " + ip + ":" + str(port))
 
     def run(self):
@@ -27,7 +26,7 @@ class FibonnachiServer(threading.Thread):
                 self.socket.close()
             else:
                 print('Received number: ', received_number)
-                number = Fibonacci.fibonacci_generator(received_number)
+                number = fibonacci_generator(received_number)
                 fibonnachi_number_bytes = number.to_bytes(((number.bit_length() + 7) // 8), byteorder='little',
                                                           signed=False)
                 print('Calculated Fibonnachi number: ', number)
@@ -50,7 +49,7 @@ threads = []
 while True:
     socket.listen(4)
     print("\nListening for incoming connections...")
-    (clientsock, (ip, port)) = socket.accept()
-    newthread = FibonnachiServer(ip, port, clientsock)
-    newthread.start()
-    threads.append(newthread)
+    (client_sock, (ip, port)) = socket.accept()
+    new_thread = FibonnachiServer(ip, port, client_sock)
+    new_thread.start()
+    threads.append(new_thread)
