@@ -1,6 +1,3 @@
-#!/usr/bin/python
-
-
 import socket
 import threading
 from optparse import OptionParser
