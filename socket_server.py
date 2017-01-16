@@ -28,32 +28,39 @@ class FibonnachiServer(threading.Thread):
                 self.socket.close()
             else:
                 print('Received number: ', received_number)
-                number = fibonacci_generator(received_number)
-                fibonnachi_number_bytes = number.to_bytes(
-                    ((number.bit_length() + 7) // 8)
-                    , byteorder='little'
-                    , signed=False)
-                print('Calculated Fibonnachi number: ', number)
 
-                # Grab chunks of bytes and transmit until there are no more
-                i = 0
-                byte_chunk = fibonnachi_number_bytes[i:i + 1024]
-                while byte_chunk != b'':
-                    i += 1024
-                    self.socket.send(byte_chunk)
-                    print('Calculated chunks: ', byte_chunk)
+                try:
+                    number = fibonacci_generator(received_number)
+                    fibonnachi_number_bytes = number.to_bytes(
+                        ((number.bit_length() + 7) // 8),
+                        byteorder='little',
+                        signed=False)
+                    print('Calculated Fibonnachi number: ', number)
+
+                    # Grab chunks of bytes and transmit until there are no more
+                    i = 0
                     byte_chunk = fibonnachi_number_bytes[i:i + 1024]
-                self.socket.close()
+                    while byte_chunk != b'':
+                        i += 1024
+                        self.socket.send(byte_chunk)
+                        print('Calculated chunks: ', byte_chunk)
+                        byte_chunk = fibonnachi_number_bytes[i:i + 1024]
+                    self.socket.close()
+
+                except Exception as e:
+                    print('Exception occurred: ', e)
+                    self.socket.send(b'\x00\x00')
+                    self.socket.close()
 
 
-socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-socket.bind(('localhost', 8080))
+my_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+my_socket.bind(('localhost', 8080))
 threads = []
 
 while True:
-    socket.listen(4)
+    my_socket.listen(4)
     print("\nListening for incoming connections...")
-    (client_sock, (ip, port)) = socket.accept()
+    (client_sock, (ip, port)) = my_socket.accept()
     new_thread = FibonnachiServer(ip, port, client_sock)
     new_thread.start()
     threads.append(new_thread)
