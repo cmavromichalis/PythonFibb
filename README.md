@@ -27,7 +27,6 @@ This is built with Python 3.6.0 and uses only standard modules from it.
 
 ## Description
 
-If there is an issue computing the nth Fibonacci, the server will return the value 0<br />
 The server will listen for connections on port 8080 and expects to receive in bytes an unsigned integer
 
 The algoirthm is:<br />
@@ -40,15 +39,16 @@ The algoirthm is:<br />
         
 Using a 2.5Ghz Intel Core i7 with 16GB of ram here were my calculation times and digits:<br />
 
-n digits     - time to compute (in seconds) <br />
-1            - 0.000  <br />
-10           - 3.099 * 10^-6 <br />
-100          - 1.215 * 10^-5 <br />
-1,000        - 1.268 * 10^-4 <br />
-10,000       - 2.831 * 10^-3 <br />
-100,000      - 1.1032 <br />
-1,000,000    - 10.534 <br />
-10,000,000   - 981.280 <br />
+n digits     | time to compute (in seconds) <br />
+------------ | -------------
+1            | 0.000  <br />
+10           | 3.099 * 10^-6 <br />
+100          | 1.215 * 10^-5 <br />
+1,000        | 1.268 * 10^-4 <br />
+10,000       | 2.831 * 10^-3 <br />
+100,000      | 1.1032 <br />
+1,000,000    | 10.534 <br />
+10,000,000   | 981.280 <br />
 
 ## Range of inputs client and server can handle
 
