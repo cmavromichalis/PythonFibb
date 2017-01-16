@@ -49,7 +49,6 @@ class FibonnachiServer(threading.Thread):
 
                 except Exception as e:
                     print('Exception occurred: ', e)
-                    self.socket.send(b'\x00\x00')
                     self.socket.close()
 
 
