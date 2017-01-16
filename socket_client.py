@@ -14,8 +14,9 @@ class Client(asyncore.dispatcher_with_send):
         asyncore.dispatcher.__init__(self)
         self.create_socket(socket.AF_INET, socket.SOCK_STREAM)
         self.connect((host, port))
-        # print('Sent the number: ', number)
-        self.out_buffer = number.to_bytes(1024, byteorder='little', signed=False)
+        self.out_buffer = number.to_bytes(1024,
+                                          byteorder='little',
+                                          signed=False)
 
     def handle_read(self):
         fibonnachi_number_bytes = b''
@@ -25,11 +26,10 @@ class Client(asyncore.dispatcher_with_send):
             if len(buffer):
                 time.sleep(0.5)
                 fibonnachi_number_bytes += buffer[0:]
-                # print('Receiving response...')
             else:
-                # print('Calculated Fibonnachi number bytes: ', fibonnachi_number_bytes)
-                fibonnachi_number = int.from_bytes(fibonnachi_number_bytes, byteorder='little', signed=False)
-                # print('Calculated Fibonnachi number : ', fibonnachi_number)
+                fibonnachi_number = int.from_bytes(fibonnachi_number_bytes,
+                                                   byteorder='little',
+                                                   signed=False)
                 print(fibonnachi_number)
                 break
 
@@ -37,8 +37,12 @@ class Client(asyncore.dispatcher_with_send):
         self.close()
 
 
-parser = argparse.ArgumentParser(description='Passes n to a server to computer the nth Fibonacci number.')
-parser.add_argument('integer', nargs=1, type=int, help='The nth Fibonacci number to compute')
+parser = argparse.ArgumentParser(description='Passes n to a server to computer'
+                                 'the nth Fibonacci number.')
+parser.add_argument('integer',
+                    nargs=1,
+                    type=int,
+                    help='The nth Fibonacci number to compute')
 arguments = parser.parse_args()
 command_line_number = (arguments.integer[0])
 
