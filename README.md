@@ -15,8 +15,11 @@ $ python3 socket_client.py 100 <br />
 This is a coding exercise for a pretty cool job :)
 
 ## Installation
+Requirements:<br />
+* Python 3.6.0<br />
+* Bash shell<br />
 
-This is built with Python 3.6.0 and uses only standard modules from it.
+This is built with Python 3.6.0 and uses only standard modules from it; it should not require any extra modules installed.
 
 1) First, make sure Python 3.6.0 is downloaded and installed.<br />
 2) Check git is also installed<br />
